@@ -6,20 +6,22 @@ public class App
 {
     public static void main( String[] args )
     {
-        Collection<DataRow<Integer, String>> country = new ArrayList<>();
-        Collection<DataRow<Integer, String>> cities = new ArrayList<>();
+        Collection<DataRow<Integer, String>> countries = new HashSet<>();
+        Collection<DataRow<Integer, String>> cities = new HashSet<>();
         JoinOperation<DataRow<Integer, String>, DataRow<Integer, String>, JoinedDataRow> innerJoinOperation = new InnerJoinOperation();
         JoinOperation<DataRow<Integer, String>, DataRow<Integer, String>, JoinedDataRow> leftJoinOperation = new LeftJoinOperation<>();
         JoinOperation<DataRow<Integer, String>, DataRow<Integer, String>, JoinedDataRow> rightJoinOperation = new RightJoinOperation<>();
 
-        country.add(new DataRow<>(0, "Ukraine"));
-        country.add(new DataRow<>(1, "Germany"));
-        country.add(new DataRow<>(2, "France"));
-        country.add(new DataRow<>(5, "Portugal"));
-        country.add(new DataRow<>(6, "Poland"));
+        countries.add(new DataRow<>(0, "Ukraine"));
+        countries.add(new DataRow<>(1, "Germany"));
+        countries.add(new DataRow<>(2, "France"));
+        countries.add(new DataRow<>(5, "Portugal"));
+        countries.add(new DataRow<>(6, "Poland"));
+        countries.add(new DataRow<>(9, "South Korea"));
+        countries.add(new DataRow<>(10, "Vatican"));
 
         System.out.println("Countries:");
-        System.out.println(country);
+        System.out.println(countries);
         System.out.println();
 
         cities.add(new DataRow<>(0, "Kyiv"));
@@ -32,17 +34,17 @@ public class App
         System.out.println(cities);
         System.out.println();
 
-        Collection<JoinedDataRow> joinedDataRowsInner = innerJoinOperation.join(country, cities);
+        Collection<JoinedDataRow> joinedDataRowsInner = innerJoinOperation.join(countries, cities);
         System.out.println("InnerJoin: ");
         joinedDataRowsInner.stream().forEach(System.out::println);
         System.out.println();
 
-        Collection<JoinedDataRow> joinedDataRowsLeft = leftJoinOperation.join(country, cities);
+        Collection<JoinedDataRow> joinedDataRowsLeft = leftJoinOperation.join(countries, cities);
         System.out.println("LeftJoin: ");
         joinedDataRowsLeft.stream().forEach(System.out::println);
         System.out.println();
 
-        Collection<JoinedDataRow> joinedDataRowsRight = rightJoinOperation.join(country, cities);
+        Collection<JoinedDataRow> joinedDataRowsRight = rightJoinOperation.join(countries, cities);
         System.out.println("RightJoin: ");
         joinedDataRowsRight.stream().forEach(System.out::println);
     }
